@@ -310,7 +310,7 @@ class PhotostoryImporter(bpy.types.Operator, ImportHelper):
                 self.images[path] = img
                 print("-- Loaded:", path)
             else:
-                warn = "Loadind image {} failed".format(path)
+                warn = "Loading image {} failed".format(path)
                 print("WARNING", warn)
                 self.report({'WARNING'}, warn)
 

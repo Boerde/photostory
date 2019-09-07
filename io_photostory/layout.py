@@ -20,6 +20,7 @@ import copy
 import random
 import numpy as np
 from mathutils import Vector
+import math
 
 
 class Size:
@@ -232,6 +233,14 @@ def arrange_rects_in_canvas_1(rectangles, canvas):
     rectangles[0].y = 0
     aspect_ratio = canvas.width / canvas.height
     bounding_box = rectangles[0]
+
+    min_size = rectangles[0].area
+    for rect in rectangles[1:]:
+        if min_size > rect.area:
+            min_size = rect.area
+
+    for rect in rectangles:
+        rect.scale(math.sqrt(min_size) / math.sqrt(rect.area))
 
     for i, rect in enumerate(rectangles[1:], 1):
         best_aspect_diff = 0
